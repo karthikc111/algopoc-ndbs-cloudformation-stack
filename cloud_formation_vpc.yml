@@ -14,14 +14,14 @@ Resources:
     Properties:
       VpcId: !Ref VPC
       CidrBlock: "20.0.1.0/24"  # Changed CIDR block
-      AvailabilityZone: !Select [0, !GetAZs !Ref "AWS::Region"]
+      AvailabilityZone: "ap-south-1"
 
   PrivateSubnet:
     Type: AWS::EC2::Subnet
     Properties:
       VpcId: !Ref VPC
       CidrBlock: "20.0.2.0/24"  # Changed CIDR block
-      AvailabilityZone: !Select [0, !GetAZs !Ref "AWS::Region"]
+      AvailabilityZone: "ap-south-1"
 
   InternetGateway:
     Type: AWS::EC2::InternetGateway
