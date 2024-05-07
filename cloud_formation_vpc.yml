@@ -2,7 +2,7 @@ AWSTemplateFormatVersion: '2010-09-09'
 Description: Create a VPC with public and private subnets and a NAT instance.
 
 Resources:
-  NDBSVPC: # Renamed VPC resource to NDBSVPC
+  NDBSVPC: NDBS-VPC
     Type: AWS::EC2::VPC
     Properties:
       CidrBlock: "20.0.0.0/16"
@@ -12,7 +12,7 @@ Resources:
   NDPublicSubnet: # Renamed PublicSubnet resource to NDPublicSubnet
     Type: AWS::EC2::Subnet
     Properties:
-      VpcId: !Ref NDBSVPC
+      VpcId: !Ref NDBS-VPC
       CidrBlock: "20.0.1.0/24"
       AvailabilityZone: "ap-south-1" # Modified AvailabilityZone
       Tags: # Added Tags
@@ -22,7 +22,7 @@ Resources:
   NDPrivateSubnet: # Renamed PrivateSubnet resource to NDPrivateSubnet
     Type: AWS::EC2::Subnet
     Properties:
-      VpcId: !Ref NDBSVPC
+      VpcId: !Ref NDBS-VPC
       CidrBlock: "20.0.2.0/24"
       AvailabilityZone: "ap-south-1" # Modified AvailabilityZone
       Tags: # Added Tags
@@ -40,13 +40,13 @@ Resources:
   NDAttachGateway: # Renamed AttachGateway resource to NDAttachGateway
     Type: AWS::EC2::VPCGatewayAttachment
     Properties:
-      VpcId: !Ref NDBSVPC
+      VpcId: !Ref NDBS-VPC
       InternetGatewayId: !Ref NDInternetGateway
 
   NDPublicRouteTable: # Renamed PublicRouteTable resource to NDPublicRouteTable
     Type: AWS::EC2::RouteTable
     Properties:
-      VpcId: !Ref NDBSVPC
+      VpcId: !Ref NDBS-VPC
       Tags: # Added Tags
         - Key: Name
           Value: ndbs-public-rt
@@ -54,7 +54,7 @@ Resources:
   NDPrivateRouteTable: # Renamed PrivateRouteTable resource to NDPrivateRouteTable
     Type: AWS::EC2::RouteTable
     Properties:
-      VpcId: !Ref NDBSVPC
+      VpcId: !Ref NDBS-VPC
       Tags: # Added Tags
         - Key: Name
           Value: ndbs-private-rt
@@ -79,7 +79,7 @@ Resources:
     Type: AWS::EC2::SecurityGroup
     Properties:
       GroupDescription: Enable NAT instance to access internet
-      VpcId: !Ref NDBSVPC
+      VpcId: !Ref NDBS-VPC
       SecurityGroupIngress:
         - IpProtocol: tcp
           FromPort: 22
