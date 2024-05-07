@@ -29,6 +29,7 @@ Resources:
         - Key: Name
           Value: ndbs-private-subnet
 
+
   NDInternetGateway: # Renamed InternetGateway resource to NDInternetGateway
     Type: AWS::EC2::InternetGateway
     Properties:
