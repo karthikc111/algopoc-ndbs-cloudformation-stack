@@ -13,7 +13,7 @@ Resources:
     Type: AWS::EC2::Subnet
     Properties:
       VpcId: !Ref NDBSVPC
-      CidrBlock: "20.0.0.0/24"
+      CidrBlock: "20.0.1.0/24"
       AvailabilityZone: "ap-south-1" # Modified AvailabilityZone
       Tags: # Added Tags
         - Key: Name
@@ -23,7 +23,7 @@ Resources:
     Type: AWS::EC2::Subnet
     Properties:
       VpcId: !Ref NDBSVPC
-      CidrBlock: "20.0.1.0/24"
+      CidrBlock: "20.0.2.0/24"
       AvailabilityZone: "ap-south-1" # Modified AvailabilityZone
       Tags: # Added Tags
         - Key: Name
